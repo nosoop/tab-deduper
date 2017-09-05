@@ -18,16 +18,19 @@ let replaceTab = (replacedTab, replacementTab) => {
 	});
 	
 	browser.tabs.remove(replacedTab.id);
-}
+};
 
 let checkDuplicateTab = (newTab) => {
 	if (newTab.id === browser.tabs.TAB_ID_NONE) {
 		return;
 	}
 	
-	browser.tabs.query(TAB_QUERY_OPTIONS).then(tabs => {
-		const newURL = new URL(newTab.url);
-		
+	/* query to prefilter down to same hosts */
+	let tabQuery = Object.assign({}, TAB_QUERY_OPTIONS);
+	const newURL = new URL(newTab.url);
+	tabQuery['url'] = `*://${newURL.hostname}/*`;
+	
+	browser.tabs.query(tabQuery).then(tabs => {
 		for (let tab of tabs) {
 			if (newTab.id == tab.id) {
 				continue;
