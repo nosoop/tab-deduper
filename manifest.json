@@ -1,8 +1,12 @@
 {
 	"manifest_version": 2,
 	"name": "Tab Deduper",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Removes / closes duplicate tabs, replacing it with a matching existing tab.",
+	"developer": {
+		"name": "nosoop",
+		"url": "https://github.com/nosoop/"
+	},
 	"icons": {
 		"48": "icon.svg",
 		"96": "icon.svg",
@@ -10,7 +14,7 @@
 		"256": "icon.svg"
 	},
 	"background": {
-		"scripts": [ "tab-dedupe.js" ]
+		"scripts": [ "background.js" ]
 	},
 	"permissions": [ "tabs", "cookies", "notifications" ]
 }

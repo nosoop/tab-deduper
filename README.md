@@ -1,5 +1,5 @@
 # tab-deduper
-WebExtension to clean up duplicate tabs.
+WebExtension to clean up duplicate tabs.  Tested in Firefox.
 
 ## Operation
 When a tab's location changes, it checks against currently open tabs in the
