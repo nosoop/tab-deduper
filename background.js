@@ -5,7 +5,10 @@ const TAB_QUERY_OPTIONS = {
 
 let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 	browser.tabs.move(replacementTab.id, { index: replacedTab.index });
-	browser.tabs.update(replacementTab.id, { active: true });
+	
+	if (replacedTab.active) {
+		browser.tabs.update(replacementTab.id, { active: replacedTab.active });
+	}
 	
 	browser.notifications.create({
 		"type": "basic",
