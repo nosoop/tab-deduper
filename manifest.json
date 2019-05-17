@@ -16,5 +16,13 @@
 	"background": {
 		"scripts": [ "background.js" ]
 	},
-	"permissions": [ "tabs", "cookies", "notifications" ]
+	"options_ui": {
+		"page": "options.html"
+	},
+	"permissions": [ "tabs", "cookies", "notifications", "storage" ],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{f6d15689-b7ec-4a1b-95c2-3560c99ff61f}"
+		}
+	}
 }

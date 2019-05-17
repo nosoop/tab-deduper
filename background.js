@@ -1,3 +1,11 @@
+/* stick all the options here so we can keep track of them */
+let settings = {
+	'protectDuplicates': true
+};
+
+/* list of tab IDs that should be protected from removal */
+let blessedTabs = new Set();
+
 const TAB_QUERY_OPTIONS = {
 	currentWindow: true,
 	windowType: "normal"
@@ -6,6 +14,7 @@ const TAB_QUERY_OPTIONS = {
 let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 	browser.tabs.move(replacementTab.id, { index: replacedTab.index });
 	
+	/* don't focus backgrounded tabs */
 	if (replacedTab.active) {
 		browser.tabs.update(replacementTab.id, { active: replacedTab.active });
 	}
@@ -24,7 +33,7 @@ let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 };
 
 let checkDuplicateTabs = async (newTab) => {
-	if (newTab.id === browser.tabs.TAB_ID_NONE) {
+	if (newTab.id === browser.tabs.TAB_ID_NONE || blessedTabs.has(newTab.id)) {
 		return;
 	}
 	
@@ -37,7 +46,7 @@ let checkDuplicateTabs = async (newTab) => {
 		/* return tabs with in the same session and the same URL (including current) */
 		let copies = tabs.filter(tab => {
 			return newTab.cookieStoreId === tab.cookieStoreId
-					&& newTab.url === tab.url;
+					&& newTab.url === tab.url && !blessedTabs.has(tab.id);
 		});
 		
 		if (copies.length > 1) {
@@ -55,5 +64,31 @@ let checkDuplicateTabs = async (newTab) => {
 browser.tabs.onUpdated.addListener((id, change, newTab) => {
 	if (change.url && change.url !== 'about:blank') {
 		checkDuplicateTabs(newTab);
+	}
+});
+
+/* add protections to newly created tabs */
+browser.tabs.onCreated.addListener(tab => {
+	if ('openerTabId' in tab && tab.status === 'loading' && settings.protectDuplicates) {
+		blessedTabs.add(tab.id);
+	}
+});
+
+browser.tabs.onRemoved.addListener((id, info) => {
+	blessedTabs.delete(id);
+});
+
+browser.storage.onChanged.addListener((changes, areaName) => {
+	/* extract just the new values so we can apply them to our options */
+	let additions = {};
+	Object.keys(changes).forEach((key) => additions[key] = changes[key].newValue);
+	Object.assign(settings, additions);
+	
+	/**
+	 * wipe any 'protected' tabs if the option is disabled so they don't linger if another
+	 * duplicate shows up
+	 */
+	if (!settings.protectDuplicates) {
+		blessedTabs.clear();
 	}
 });
