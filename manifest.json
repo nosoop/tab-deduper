@@ -5,7 +5,7 @@
 	"description": "Removes / closes duplicate tabs, replacing it with a matching existing tab.",
 	"developer": {
 		"name": "nosoop",
-		"url": "https://github.com/nosoop/"
+		"url": "https://github.com/nosoop/tab-deduper"
 	},
 	"icons": {
 		"48": "icon.svg",
