@@ -34,20 +34,11 @@ let checkDuplicateTabs = async (newTab) => {
 	tabQuery['url'] = `*://${newURL.hostname}/*`;
 	
 	await browser.tabs.query(tabQuery).then(tabs => {
-		let copies = [];
-		for (let tab of tabs) {
-			/* make sure they are in the same context */
-			if (newTab.cookieStoreId !== tab.cookieStoreId) {
-				continue;
-			}
-			
-			let tabURL = new URL(tab.url);
-			
-			/* TODO additional options for URL matching */
-			if (newTab.url === tab.url) {
-				copies.push(tab);
-			}
-		}
+		/* return tabs with in the same session and the same URL (including current) */
+		let copies = tabs.filter(tab => {
+			return newTab.cookieStoreId === tab.cookieStoreId
+					&& newTab.url === tab.url;
+		});
 		
 		if (copies.length > 1) {
 			/* TODO handle priorities -- right now it keeps the older tab */
