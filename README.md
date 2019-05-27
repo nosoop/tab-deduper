@@ -16,3 +16,4 @@ Requires the following permissions:
 other contexts.
 * `notifications`:  To notify a user that their current tab was replaced with
 an existing one.
+* `storage`:  To store extension settings.
