@@ -92,3 +92,7 @@ browser.storage.onChanged.addListener((changes, areaName) => {
 		blessedTabs.clear();
 	}
 });
+
+browser.storage.sync.get(null, (data) => {
+	Object.assign(settings, data);
+});
