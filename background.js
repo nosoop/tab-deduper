@@ -38,9 +38,10 @@ let checkDuplicateTabs = async (newTab) => {
 	}
 	
 	/* query to prefilter down to same hosts */
-	let tabQuery = Object.assign({}, TAB_QUERY_OPTIONS);
 	const newURL = new URL(newTab.url);
-	tabQuery['url'] = `*://${newURL.hostname}/*`;
+	let tabQuery = Object.assign({}, TAB_QUERY_OPTIONS, {
+		'url': `*://${newURL.hostname}/*`
+	});
 	
 	await browser.tabs.query(tabQuery).then(tabs => {
 		/* return tabs with in the same session and the same URL (including current) */
