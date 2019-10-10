@@ -1,6 +1,7 @@
 /* stick all the options here so we can keep track of them */
 let settings = {
-	'protectDuplicates': true
+	'protectDuplicates': true,
+	'moveOlder': true
 };
 
 /* list of tab IDs that should be protected from removal */
@@ -12,7 +13,9 @@ const TAB_QUERY_OPTIONS = {
 };
 
 let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
-	browser.tabs.move(replacementTab.id, { index: replacedTab.index });
+	if (settings.moveOlder) {
+		browser.tabs.move(replacementTab.id, { index: replacedTab.index });
+	}
 	
 	/* don't focus backgrounded tabs */
 	if (replacedTab.active) {
