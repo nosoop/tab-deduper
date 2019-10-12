@@ -35,16 +35,34 @@ let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 	browser.tabs.remove(discardedTabs.map(tab => tab.id));
 };
 
+let getTabQuery = (url) => {
+	const newURL = new URL(url);
+	let filter;
+
+	switch (newURL.protocol) {
+		case 'about:':
+			filter = {
+				'url': `${newURL.protocol}*`
+			};
+			break;
+
+		default:
+			filter = {
+				'url': `*://${newURL.hostname}/*`
+			};
+			break;
+	}
+
+	return Object.assign({}, TAB_QUERY_OPTIONS, filter);
+}
+
 let checkDuplicateTabs = async (newTab) => {
 	if (newTab.id === browser.tabs.TAB_ID_NONE || blessedTabs.has(newTab.id)) {
 		return;
 	}
 	
-	/* query to prefilter down to same hosts */
-	const newURL = new URL(newTab.url);
-	let tabQuery = Object.assign({}, TAB_QUERY_OPTIONS, {
-		'url': `*://${newURL.hostname}/*`
-	});
+	/* query to prefilter tabs */
+	const tabQuery = getTabQuery(newTab.url);
 	
 	await browser.tabs.query(tabQuery).then(tabs => {
 		/* return tabs with in the same session and the same URL (including current) */
