@@ -11,6 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				data.protectDuplicates : true;
 		
 		document.querySelector("#move_older").checked = 'moveOlder' in data?
-				data.moveOldTab : true;
+				data.moveOlder : true;
 	});
 });
