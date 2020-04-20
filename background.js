@@ -1,20 +1,20 @@
 /* stick all the options here so we can keep track of them */
 let settings = {
 	'protectDuplicates': true,
-	'moveOlder': true
+	'moveOlder': true,
+	'checkMultiWindow': false
 };
 
 /* list of tab IDs that should be protected from removal */
 let blessedTabs = new Set();
 
 const TAB_QUERY_OPTIONS = {
-	currentWindow: true,
 	windowType: "normal"
 };
 
 let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 	if (settings.moveOlder) {
-		browser.tabs.move(replacementTab.id, { index: replacedTab.index });
+		browser.tabs.move(replacementTab.id, { index: replacedTab.index, windowId: replacedTab.windowId });
 	}
 	
 	/* don't focus backgrounded tabs */
@@ -52,7 +52,7 @@ let getTabQuery = (url) => {
 			};
 			break;
 	}
-
+	filter.currentWindow = settings.checkMultiWindow? null : true;
 	return Object.assign({}, TAB_QUERY_OPTIONS, filter);
 }
 
