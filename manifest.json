@@ -22,7 +22,7 @@
 	"permissions": [ "tabs", "cookies", "notifications", "storage" ],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "{f6d15689-b7ec-4a1b-95c2-3560c99ff61f}"
+			"id": "{28d03e32-9c43-4a90-b89d-b42abf9e3c8f}"
 		}
 	}
 }
