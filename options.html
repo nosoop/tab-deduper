@@ -4,11 +4,31 @@
 	<meta charset="utf-8">
 	
 	<style>
+	:root {
+		--panel-bg-color: #FFF;
+		--form-even-color: rgba(0, 0, 0, 0.05);
+		--text-color: #000;
+	}
+	
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--panel-bg-color: #202023;
+			--form-even-color: rgba(255, 255, 255, 0.05);
+			--text-color: #F9F9FA;
+			--subtext-color: #B1B1B3;
+		}
+	}
+	
+	html, body {
+		background-color: var(--panel-bg-color);
+		color: var(--text-color);
+		min-height: 250px;
+	}
+	
+	.info {
+		padding: 0.5rem 0.5rem;
+	}
 	.content {
-		border-radius: 0.25rem;
-		border: 1px solid;
-		padding: 0.5rem;
-		background-color: #FFF;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 		font-weight: normal;
@@ -16,13 +36,13 @@
 	}
 	form > div {
 		display: flex;
-		padding: 0.5rem 0;
+		padding: 0.5rem 0.5rem;
 	}
 	form > div > label {
 		flex: auto;
 	}
 	form > div:nth-child(even) {
-		background-color: rgba(0, 0, 0, 0.05);
+		background-color: var(--form-even-color);
 	}
 	label > div:nth-child(1) {
 		font-weight: bold;
@@ -33,7 +53,7 @@
 	<div class="info">
 		<em>Changes to settings are automatically saved.</em>
 	</div>
-	<form>
+	<form class="browser-style">
 		<div>
 			<label for="protect_duplicates">
 				<div>Keep explicitly duplicated tabs:</div>

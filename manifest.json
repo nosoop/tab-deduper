@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Tab Deduper",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Removes / closes duplicate tabs, replacing it with a matching existing tab.",
 	"developer": {
 		"name": "nosoop",
