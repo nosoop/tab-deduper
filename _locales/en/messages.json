@@ -1,0 +1,47 @@
+{
+	"extensionName": {
+		"message": "Tab Deduper",
+		"description": "Extension name."
+	},
+	"extensionDescription": {
+		"message": "Removes / closes duplicate tabs, replacing it with a matching existing tab.",
+		"description": "Extension description."
+	},
+	"autosaveNotice": {
+		"message": "Changes to settings are automatically saved.",
+		"description": "Permanent notice in the options screen."
+	},
+	"protectDuplicatesLabel": {
+		"message": "Keep explicitly duplicated tabs:",
+		"description": "Option label in the options screen."
+	},
+	"protectDuplicatesHint": {
+		"message": "Tabs created by the \"$DUPLICATETABACTION$\" option will not be automatically removed.",
+		"description": "Help under option in the options screen.",
+		"placeholders": {
+			"duplicateTabAction": {
+				"content": "Duplicate Tab"
+			}
+		}
+	},
+	"moveOrderLabel": {
+		"message": "Change the old tab position:",
+		"description": "Option label in the options screen."
+	},
+	"moveOrderHint": {
+		"message": "Old tabs will be moved to the current tab position.",
+		"description": "Help under option in the options screen."
+	},
+	"checkMultiwindowLabel": {
+		"message": "Check all windows:",
+		"description": "Option label in the options screen."
+	},
+	"checkMultiwindowHint": {
+		"message": "Duplicates are checked across all (non-private) windows.",
+		"description": "Help under option in the options screen."
+	},
+	"notificationTitle": {
+		"message": "Duplicate tab replaced:",
+		"description": "Notification title shown when closing a duplicated tab."
+	}
+}

@@ -51,38 +51,32 @@
 </head>
 <body><div class="content">
 	<div class="info">
-		<em>Changes to settings are automatically saved.</em>
+		<em data-i18n="autosaveNotice"></em>
 	</div>
 	<form class="browser-style">
 		<div>
 			<label for="protect_duplicates">
-				<div>Keep explicitly duplicated tabs:</div>
-				<div>
-					Tabs created by the "Duplicate Tab" option will not be automatically
-					removed.
-				</div>
+				<div data-i18n="protectDuplicatesLabel"></div>
+				<div data-i18n="protectDuplicatesHint"></div>
 			</label>
 			<input type="checkbox" id="protect_duplicates">
 		</div>
 		<div>
 			<label for="move_older">
-				<div>Change the old tab position:</div>
-				<div>
-					Old tabs will be moved to the current tab position.
-				</div>
+				<div data-i18n="moveOrderLabel"></div>
+				<div data-i18n="moveOrderHint"></div>
 			</label>
 			<input type="checkbox" id="move_older">
 		</div>
 		<div>
 			<label for="check_multiwindow">
-				<div>Check all windows:</div>
-				<div>
-					Duplicates are checked across all (non-private) windows.
-				</div>
+				<div data-i18n="checkMultiwindowLabel"></div>
+				<div data-i18n="checkMultiwindowHint"></div>
 			</label>
 			<input type="checkbox" id="check_multiwindow">
 		</div>
 	</form>
 	<script src="options.js"></script>
+	<script src="i18n.js"></script>
 </div></body>
 </html>
