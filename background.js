@@ -24,7 +24,7 @@ let replaceTab = (replacedTab, replacementTab, discardedTabs) => {
 	
 	browser.notifications.create({
 		"type": "basic",
-		"title": "Duplicate tab replaced:",
+		"title": browser.i18n.getMessage('notificationTitle'),
 		"message": (replacedTab.url).toString()
 	}).then(currentNotification => {
 		setTimeout((notification) => {

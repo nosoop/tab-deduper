@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
-	"name": "Tab Deduper",
+	"name": "__MSG_extensionName__",
 	"version": "1.4.1",
-	"description": "Removes / closes duplicate tabs, replacing it with a matching existing tab.",
+	"description": "__MSG_extensionDescription__",
 	"developer": {
 		"name": "nosoop",
 		"url": "https://github.com/nosoop/tab-deduper"
@@ -24,5 +24,6 @@
 		"gecko": {
 			"id": "{28d03e32-9c43-4a90-b89d-b42abf9e3c8f}"
 		}
-	}
+	},
+	"default_locale": "en"
 }
