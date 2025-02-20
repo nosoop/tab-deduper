@@ -1,6 +1,9 @@
 # tab-deduper
 WebExtension to clean up duplicate tabs.  Tested in Firefox.
 
+# Availability
+Available on AMO here: https://addons.mozilla.org/firefox/addon/tab-deduper/
+
 ## Operation
 When a tab's location changes, it checks against currently open tabs in the
 same window.  On a match, one is made active and the other is removed.
